@@ -1,0 +1,17 @@
+
+<h1> TODO LIST </h1>
+
+<a href = "{% url 'todo:finished' %}">완료된 리스트 </a>
+
+<a href = "{% url 'todo:create' %}">새로운 todo 작성하기 </a>
+
+{% if todo_list %}
+  <ul>
+    {% for todo in todo_list %}
+      <li><a href="{% url 'todo:detail' todo.id %}">
+        {{todo.title}}</a></li>
+      {% endfor %}
+  </ul>
+{% else %}
+  <h2>현재로서 할일 없음 </h2>
+{% endif %}
