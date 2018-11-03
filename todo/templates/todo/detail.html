@@ -1,12 +1,19 @@
 <h1>{{ todo.todo_title}} </h1>
 
-<h2> 우선순위: {{todo.priority}} / 기한: {{todo.due_date.year}}.
-  {{todo.due_date.month}}.{{todo.due_date.day}} </h2>
-<h3> {{todo.text}} </h3>
-<a href ="{% url 'todo:adjust' todo.id %}">
-  수정하기 </a>
-<br> </br>
+<h3> 우선순위: {{todo.priority}} / 기한: {{todo.due_date.year}}.
+  {{todo.due_date.month}}.{{todo.due_date.day}} </h3>
+<div style ='border: 1px solid gold'>
+  <p> {{todo.text}} </p>
+</div>
 
-<a href = "{% url 'todo:delete' todo.id %}" >
-  삭제하기 </a>
-<br> </br>
+<form action = "{% url 'todo:adjust' todo.id %}">
+  <input type = "submit" value="수정하기">
+</form>
+
+<form action = "{% url 'todo:delete' todo.id %}">
+  <input type = "submit" value="삭제하기">
+</form>
+
+<form action = "{% url 'todo:index' %}">
+  <input type = "submit" value="돌아가기">
+</form>

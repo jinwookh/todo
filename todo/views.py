@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from django.contrib import messages
+from django.utils.timezone import datetime
 
 
 from .models import Todo, CompletedTodo
@@ -11,8 +13,11 @@ def index(request):
 #This function has to give todo objects in todo LIST to index.html
 #shows todo LIST in order of priority
     todoList = Todo.objects.order_by('priority')
+
+    expiredList = Todo.objects.filter(due_date__lte = datetime.today())
     context = {
-        'todo_list':todoList
+        'todo_list':todoList,
+        'expired_list': expiredList,
     }
 
     return render(request, 'todo/index.html', context)
@@ -62,8 +67,9 @@ def delete(request, todo_id):
     #delete the object corresponding to todo_id
     #and redirect todo:index
     todo = get_object_or_404(Todo,pk=todo_id)
+    title = todo.todo_title
     todo.delete()
-    return redirect('todo:index')
+    return render(request, 'todo/deletion.html', {'title' : title})
 
 def finishedList(request):
 #this function shows list of completedTodo objects in order of due_date

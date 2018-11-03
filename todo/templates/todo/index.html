@@ -1,9 +1,28 @@
 
 <h1> TODO LIST </h1>
 
-<a href = "{% url 'todo:finished' %}">완료된 리스트 </a>
-<br></br>
-<a href = "{% url 'todo:create' %}">새로운 todo 작성하기 </a>
+<form action = "{% url 'todo:finished' %}">
+  <input type = "submit" value="완료된 리스트">
+</form>
+
+<form action = "{% url 'todo:create' %}">
+  <input type = "submit" value="새로운 todo 작성하기">
+  </form>
+
+
+{% if expired_list %}
+<ul style="background-color:Tomato;"> <h3 style="bold">알림!</h3>
+
+  {% for todo in expired_list %}
+    <li>
+    {{todo.todo_title}}/{{todo.due_date.year}}.
+    {{todo.due_date.month}}.{{todo.due_date.day}}
+    </li>
+  {% endfor %}
+  기한이 만료되었습니다.
+  </ul>
+  {% endif %}
+
 
 {% if todo_list %}
   <ul>

@@ -5,4 +5,6 @@
   <h1> 완료되었습니다 </h1>
 {%endif%}
 
-<a href = "{% url 'todo:index' %}">돌아가기</a>
+<form action = "{% url 'todo:index' %}">
+  <input type = "submit" value="돌아가기">
+</form>
