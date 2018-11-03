@@ -2,14 +2,21 @@
 <h1> TODO LIST </h1>
 
 <a href = "{% url 'todo:finished' %}">완료된 리스트 </a>
-
+<br></br>
 <a href = "{% url 'todo:create' %}">새로운 todo 작성하기 </a>
 
 {% if todo_list %}
   <ul>
     {% for todo in todo_list %}
       <li><a href="{% url 'todo:detail' todo.id %}">
-        {{todo.title}}</a></li>
+        {{todo.todo_title}}/{{todo.due_date.year}}.
+        {{todo.due_date.month}}.{{todo.due_date.day}}
+        /priority:{{todo.priority}}</a>
+        <form action = "{% url 'todo:check' todo.id %}">
+          <input type = "submit" value="완료">
+          </form>
+      </li>
+
       {% endfor %}
   </ul>
 {% else %}

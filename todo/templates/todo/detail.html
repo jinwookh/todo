@@ -1,0 +1,12 @@
+<h1>{{ todo.todo_title}} </h1>
+
+<h2> 우선순위: {{todo.priority}} / 기한: {{todo.due_date.year}}.
+  {{todo.due_date.month}}.{{todo.due_date.day}} </h2>
+<h3> {{todo.text}} </h3>
+<a href ="{% url 'todo:adjust' todo.id %}">
+  수정하기 </a>
+<br> </br>
+
+<a href = "{% url 'todo:delete' todo.id %}" >
+  삭제하기 </a>
+<br> </br>

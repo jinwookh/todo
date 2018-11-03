@@ -1,3 +1,18 @@
 <h1> 완료된 리스트 </h1>
 
+
+{% if finished_list %}
+  <ul>
+  {% for todo in finished_list %}
+    <li>
+      {{todo.todo_title}}/{{todo.due_date.year}}.
+      {{todo.due_date.month}}.{{todo.due_date.day}}/
+      priority:{{todo.priority}}
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+<h2> 완료한 일이 하나도 없음.. </h2>
+{% endif %}
+
 <a href = "{% url 'todo:index' %}">돌아가기</a>

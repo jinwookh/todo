@@ -1,5 +1,7 @@
 <h1> 새로운 TODO 등록 </h1>
 
-<a href = "{% url 'todo:index' %}">돌아가기     </a>
+<form method = 'POST' >
+  {%csrf_token%} {{form.as_p}}
+  <button type="submit"> 저장 </button>
 
-<a href = "{% url 'todo:creation'%}">등록하기 </a>
+<a href = "{% url 'todo:index' %}">돌아가기     </a>
