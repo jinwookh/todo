@@ -1,9 +1,9 @@
 <h1> 완료된 리스트 </h1>
 
 
-{% if finished_list %}
+{% if completed_list %}
   <ul>
-  {% for todo in finished_list %}
+  {% for todo in completed_list %}
     <li>
       {{todo.todo_title}}/{{todo.due_date.year}}.
       {{todo.due_date.month}}.{{todo.due_date.day}}/

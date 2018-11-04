@@ -15,6 +15,7 @@ def index(request):
     todoList = Todo.objects.order_by('priority')
 
     expiredList = Todo.objects.filter(due_date__lte = datetime.today())
+    #At here, there is timezone problem, not haven't been solved yet
     context = {
         'todo_list':todoList,
         'expired_list': expiredList,
@@ -71,14 +72,14 @@ def delete(request, todo_id):
     todo.delete()
     return render(request, 'todo/deletion.html', {'title' : title})
 
-def finishedList(request):
+def completedList(request):
 #this function shows list of completedTodo objects in order of due_date
-    finishedList = CompletedTodo.objects.order_by('due_date')
+    completedList = CompletedTodo.objects.order_by('due_date')
     context = {
-        'finished_list':finishedList
+        'completed_list':completedList
     }
 
-    return render(request, 'todo/finishedList.html', context)
+    return render(request, 'todo/completedList.html', context)
 
 def create(request):
     #at this method, when request is not post, it renders creat.html

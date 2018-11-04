@@ -14,7 +14,7 @@ urlpatterns = [
     # ->views.adjust with POST -> adjustment.html
     path('<int:todo_id>/notice_for_deletion/', views.delete, name = 'delete'),
     #from detail.html -> this path -> views.deletion -> delete.html
-    path('finished_List/', views.finishedList, name = 'finished'),
+    path('completed_list/', views.completedList, name = 'completed'),
     #from index.html -> this path -> views.finishedList ->finishedList.html
     path('register/', views.create, name = 'create'),
     #from index.html -> this path -> views.create -> create.html
